@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Queen Jamlu Judgement 👑</title>
+<style>
+body{
+    margin:0;
+    font-family:'Comic Sans MS', cursive;
+    background: linear-gradient(135deg,#ffe6f0,#c8f7ff);
+    text-align:center;
+    overflow-x:hidden; /* allow vertical scrolling */
+}
+
+h1{ margin-top:30px; color:#ff4d88; }
+
+button{
+    padding:12px 22px;
+    font-size:16px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin:8px;
+    background:#ff6b9d;
+    color:white;
+    transition:0.3s;
+}
+
+button:hover{ transform:scale(1.1); }
+
+#photo{
+    width:220px;
+    border-radius:20px;
+    margin-top:15px;
+    box-shadow:0 0 20px pink;
+}
+
+.koala{ position:fixed; bottom:20px; left:20px; font-size:70px; }
+.teddy{ position:fixed; bottom:20px; right:20px; font-size:70px; }
+
+.speech{
+    position:fixed;
+    bottom:110px;
+    left:20px;
+    background:white;
+    padding:12px 18px;
+    border-radius:20px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    font-size:13px;
+    max-width:220px;
+}
+
+.heart{
+    position:fixed;
+    font-size:25px;
+    animation:float 4s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+
+#gameArea{
+    padding-bottom:200px;
+}
+</style>
+</head>
+<body>
+
+<h1>👑 Welcome Queen Jamlu 👑</h1>
+<p>Today you decide the fate of one boy named Manas 😌</p>
+
+<img src="us.jpg" id="photo"><br>
+<button onclick="level1()">Start Royal Trial ⚖️</button>
+
+<div id="gameArea"></div>
+
+<div class="koala">🐨</div>
+<div class="teddy">🧸</div>
+<div class="speech" id="speech">Koala: Court is now in session 👀</div>
+
+<script>
+
+let game = document.getElementById("gameArea");
+
+let koalaLines = [
+"Jamlu deserves pure effort 💅",
+"Manas.exe needs an update 😤",
+"Teddy believes in love 🧸",
+"Queen energy unmatched 👑",
+"This boy is nervous 😌"
+];
+
+setInterval(()=>{
+    document.getElementById("speech").innerText =
+    koalaLines[Math.floor(Math.random()*koalaLines.length)];
+},4000);
+
+function wrong(){
+    alert("🐨 Koala: That answer is not acceptable, Your Majesty.");
+}
+
+// LEVEL 1
+function level1(){
+    game.innerHTML = `
+    <h2>Level 1: What mistake did Manas make?</h2>
+    <button onclick="wrong()">He forgot to drink water 😭</button>
+    <button onclick="level2()">He didn't give Jamlu enough time & couldn't meet her properly 💔</button>
+    `;
+}
+
+// 💕 SWEETER LEVEL 2
+function level2(){
+    game.innerHTML = `
+    <h2>Level 2: What is Jamlu in Manas' life?</h2>
+    <button onclick="wrong()">Just a contact in phone 😌</button>
+    <button onclick="wrong()">Timepass partner 😭</button>
+    <button onclick="level3()">His comfort, his happiness, and the best part of his day 💖</button>
+    `;
+}
+
+// LEVEL 3
+function level3(){
+    game.innerHTML = `
+    <h2>Level 3: What should Manas do now?</h2>
+    <button onclick="wrong()">Say sorry and disappear again 😏</button>
+    <button onclick="level4()">Manage time better, plan cute dates & give proper attention 👑</button>
+    `;
+}
+
+// LEVEL 4 – FUN ROUND
+function level4(){
+    game.innerHTML = `
+    <h2>Level 4: Who is the cutest in the universe?</h2>
+    <button onclick="wrong()">Manas 😌</button>
+    <button onclick="level5()">Jamlu obviously 👑💖</button>
+    `;
+}
+
+// LEVEL 5 – FINAL
+function level5(){
+    game.innerHTML = `
+    <h2>Final Decision 👑</h2>
+    <p><i>"Jamlu, I know I couldn't give you enough time or meet you properly.
+    You are not an option in my life. You are my priority.
+    I promise to improve and make more memories with you." 💖</i></p>
+
+    <button onclick="forgive()">Forgive Manas 🥺</button>
+    <button onclick="drama()">Make Him Panic More 😌</button>
+    `;
+}
+
+function drama(){
+    alert("🐨 Koala: Panic mode activated. Manas is sweating 😭");
+}
+
+function forgive(){
+    game.innerHTML = `
+    <h1>💖 QUEEN JAMLU HAS FORGIVEN MANAS 💖</h1>
+    <h2>Relationship Level Up 🥰</h2>
+    <div style="font-size:90px;">🐨🧸💘</div>
+    <p>Unlocked:</p>
+    <p>✔ Better Time Management<br>
+    ✔ More Dates<br>
+    ✔ Unlimited Hugs<br>
+    ✔ Jamlu = Priority Always 👑</p>
+    <p>Next Mission: Plan Next Date Immediately 😌</p>
+    `;
+    createHearts();
+}
+
+function createHearts(){
+    setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*window.innerWidth+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},4000);
+    },300);
+}
+
+</script>
+
+</body>
+</html>
